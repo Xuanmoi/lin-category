@@ -1,0 +1,7 @@
+{% layout 'app' %}
+
+<ul class="lin-category-list">
+  {% for collection in collections %}
+    <li class="category-name">{{ collection.title }}</li>
+  {% endfor %}
+</ul>
