@@ -1,7 +1,12 @@
-{% layout 'app' %}
+{% layout 'theme' %}
+<h3>template-ejs-{{ shop.name }}</h3>
 
-<ul class="lin-category-list">
-  {% for collection in collections %}
-    <li class="category-name">{{ collection.title }}</li>
-  {% endfor %}
+<% if (categoryInfo) { %>
+  <p>分类: <%= categoryInfo.title %></p>
+<% } %>
+
+<ul class="product-list">
+  <% products.forEach(function(product) { %>
+    <li><%= product.title %></li>
+  <% }); %>
 </ul>
