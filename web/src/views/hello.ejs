@@ -1,0 +1,23 @@
+{% layout 'theme' %}
+<h3>template-ejs-{{ shop.name }}</h3>
+<h1>
+  <%= message %>
+</h1>
+<!-- ejs不能使用block，只能使用snippents{% content_for 'block', type: 'test-ejs', id: 'test-ejs-id' %} -->
+<!-- {% render 'test-ejs' with 'my-test-ejs-snippents' %} -->
+<!-- capture -->
+{% capture test_ejs_capture %}
+<%= message %>
+  {% endcapture %}
+  <h5>test_ejs_capture_{{ test_ejs_capture }}</h5>
+  <!-- assign -->
+  {% assign test_ejs_assign = '<%= message %>' %}
+    <h5>{{ test_ejs_assign }}</h5>
+    {% render 'test-ejs', message: '<%= message %>', test_ejs_assign: test_ejs_assign, test_ejs_capture:
+      test_ejs_capture %}
+
+      <ul class="lin-category-list">
+        {% for collection in collections %}
+        <li class="category-name">{{ collection.title }}</li>
+        {% endfor %}
+      </ul>

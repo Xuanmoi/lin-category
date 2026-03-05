@@ -20,6 +20,6 @@ scopes = "read_products,write_app_proxy"
 redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]
 
 [app_proxy]
-url = "https://taught-gibson-magic-acids.trycloudflare.com" 
+url = "https://tours-log-terms-somerset.trycloudflare.com" 
 prefix = "apps"
 subpath = "lin-category" 
