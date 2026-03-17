@@ -8,36 +8,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CollectionsService = void 0;
 const common_1 = require("@nestjs/common");
-const promises_1 = require("fs/promises");
-const path_1 = require("path");
-const ejs = require("ejs");
 const algolia_service_1 = require("../algolia/algolia.service");
 let CollectionsService = class CollectionsService {
     constructor(algolia) {
         this.algolia = algolia;
     }
-    async renderCollection(handle, shop) {
-        const categoryInfo = await this.algolia.searchCollection(handle);
-        const products = await this.algolia.searchProductsByCollection(handle);
-        const templatePath = (0, path_1.join)(__dirname, '..', '..', 'views', 'categories.ejs');
-        const templateContent = await (0, promises_1.readFile)(templatePath, 'utf-8');
-        return ejs.render(templateContent, {
-            shop,
+    async getCollectionsData(handle) {
+        const timestamp = new Date().toLocaleString('zh-CN');
+        const { categoryInfo, products } = await this.fetchContent(handle);
+        return {
+            timestamp,
             handle,
             categoryInfo,
             products,
-            appName: 'Lin Category',
-            timestamp: new Date().toLocaleString('zh-CN'),
-        });
+            content: categoryInfo || `分类 ${handle}`,
+        };
+    }
+    async fetchContent(handle) {
+        const [categoryInfo, products] = await Promise.all([
+            this.algolia.searchCollection(handle),
+            this.algolia.searchProductsByCollection(handle),
+        ]);
+        return { categoryInfo, products };
     }
 };
 exports.CollectionsService = CollectionsService;
 exports.CollectionsService = CollectionsService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [typeof (_a = typeof algolia_service_1.AlgoliaService !== "undefined" && algolia_service_1.AlgoliaService) === "function" ? _a : Object])
+    __metadata("design:paramtypes", [algolia_service_1.AlgoliaService])
 ], CollectionsService);
 //# sourceMappingURL=collections.service.js.map

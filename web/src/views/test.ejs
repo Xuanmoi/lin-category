@@ -1,0 +1,15 @@
+{% layout 'theme' %}
+<h1>Test 页面</h1>
+<p>当前时间: <%= timestamp %></p>
+<p>自定义内容: <%= content %></p>
+<p>分类: <%= handle %></p>
+
+<% products.forEach(function(product) { %>
+    <li><%= product.title %></li>
+  <% }); %>
+
+  <script>
+    // 把服务器端的 products 注入到前端 JS
+    var productslists = <%- JSON.stringify(products) %>;
+    console.log(productslists);
+  </script>

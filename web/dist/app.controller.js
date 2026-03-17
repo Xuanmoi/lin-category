@@ -19,7 +19,9 @@ let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
-    getHello(res) {
+    getHello(req, res) {
+        console.log('=== 请求头 ===');
+        console.log(req.headers);
         res.header('Content-Type', 'application/liquid');
         return { message: this.appService.getHello() };
     }
@@ -31,9 +33,10 @@ exports.AppController = AppController;
 __decorate([
     (0, common_1.Get)('hello'),
     (0, common_1.Render)('hello'),
-    __param(0, (0, common_1.Res)()),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "getHello", null);
 __decorate([

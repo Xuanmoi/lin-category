@@ -16,38 +16,22 @@ exports.CollectionsController = void 0;
 const common_1 = require("@nestjs/common");
 const collections_service_1 = require("./collections.service");
 let CollectionsController = class CollectionsController {
-    constructor(collections) {
-        this.collections = collections;
+    constructor(collectionsService) {
+        this.collectionsService = collectionsService;
     }
-    list() {
-        return 'test collection';
-    }
-    async getCollection(handle, shop, res) {
-        try {
-            const shopDomain = shop || 'fp-dev-au.myshopify.com';
-            const html = await this.collections.renderCollection(handle, shopDomain);
-            res.setHeader('Content-Type', 'application/liquid').send(html);
-        }
-        catch (error) {
-            console.error('分类查询失败:', error);
-            res.status(500).send('分类加载失败');
-        }
+    async getCollection(handle, res) {
+        res.header('Content-Type', 'application/liquid');
+        return this.collectionsService.getCollectionsData(handle);
     }
 };
 exports.CollectionsController = CollectionsController;
 __decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], CollectionsController.prototype, "list", null);
-__decorate([
     (0, common_1.Get)(':handle'),
+    (0, common_1.Render)('test'),
     __param(0, (0, common_1.Param)('handle')),
-    __param(1, (0, common_1.Query)('shop')),
-    __param(2, (0, common_1.Res)()),
+    __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Object]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], CollectionsController.prototype, "getCollection", null);
 exports.CollectionsController = CollectionsController = __decorate([

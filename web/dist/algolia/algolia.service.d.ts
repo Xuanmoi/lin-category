@@ -4,17 +4,6 @@ export declare class AlgoliaService {
     private client;
     private indexName;
     constructor(config: ConfigService);
-    searchCollection(handle: string): Promise<{
-        objectID: string;
-        _highlightResult?: {
-            [key: string]: import("algoliasearch").HighlightResult;
-        } | undefined;
-        _snippetResult?: {
-            [key: string]: import("algoliasearch").SnippetResult;
-        } | undefined;
-        _rankingInfo?: import("algoliasearch").RankingInfo | undefined;
-        _distinctSeqID?: number | undefined;
-    }>;
     searchProductsByCollection(handle: string): Promise<{
         objectID: string;
         _highlightResult?: {
@@ -26,4 +15,15 @@ export declare class AlgoliaService {
         _rankingInfo?: import("algoliasearch").RankingInfo | undefined;
         _distinctSeqID?: number | undefined;
     }[]>;
+    searchCollection(handle: string): Promise<{
+        objectID: string;
+        _highlightResult?: {
+            [key: string]: import("algoliasearch").HighlightResult;
+        } | undefined;
+        _snippetResult?: {
+            [key: string]: import("algoliasearch").SnippetResult;
+        } | undefined;
+        _rankingInfo?: import("algoliasearch").RankingInfo | undefined;
+        _distinctSeqID?: number | undefined;
+    } | null>;
 }
