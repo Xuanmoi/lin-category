@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AlgoliaService } from '../algolia/algolia.service';
 
-
 @Injectable()
 export class CollectionsService {
   constructor(private readonly algolia: AlgoliaService) {}

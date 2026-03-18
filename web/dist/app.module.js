@@ -10,10 +10,16 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const path_1 = require("path");
+const logger_middleware_1 = require("./common/middleware/logger.middleware");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const collections_module_1 = require("./collections/collections.module");
+const admin_controller_1 = require("./admin/admin.controller");
+const cats_module_1 = require("./cats/cats.module");
 let AppModule = class AppModule {
+    configure(consumer) {
+        consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes('cats');
+    }
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
@@ -22,9 +28,10 @@ exports.AppModule = AppModule = __decorate([
             config_1.ConfigModule.forRoot({
                 envFilePath: (0, path_1.join)(__dirname, '..', '.env'),
             }),
-            collections_module_1.CollectionsModule
+            collections_module_1.CollectionsModule,
+            cats_module_1.CatsModule
         ],
-        controllers: [app_controller_1.AppController],
+        controllers: [app_controller_1.AppController, admin_controller_1.AdminController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);

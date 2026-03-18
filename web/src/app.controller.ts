@@ -1,6 +1,6 @@
 import { Controller, Get, Req, Render, Res } from '@nestjs/common';
 import { AppService } from './app.service';
-import type {  Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 @Controller()
 export class AppController {
@@ -13,7 +13,7 @@ export class AppController {
     // 打印完整请求头
     console.log('=== 请求头 ===');
     console.log(req.headers);
-  
+
     res.header('Content-Type', 'application/liquid');
     return { message: this.appService.getHello() };
   }

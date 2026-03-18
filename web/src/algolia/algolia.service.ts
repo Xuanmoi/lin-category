@@ -30,7 +30,8 @@ export class AlgoliaService {
 
   /** 查询分类信息（若有 collections 索引） */
   async searchCollection(handle: string) {
-    const collectionsIndex = this.config.get('ALGOLIA_COLLECTIONS_INDEX') || this.indexName;
+    const collectionsIndex =
+      this.config.get('ALGOLIA_COLLECTIONS_INDEX') || this.indexName;
     try {
       const result = await this.client.searchSingleIndex({
         indexName: collectionsIndex,

@@ -7,6 +7,7 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.setBaseViewsDir((0, path_1.join)(__dirname, 'views'));
     app.setViewEngine('ejs');
+    app.set('query parser', 'extended');
     const port = process.env.PORT ?? 3000;
     await app.listen(port);
     console.log(`NestJS 服务运行在 http://localhost:${port}`);

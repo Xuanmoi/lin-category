@@ -9,6 +9,8 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, 'views'));
   // 模版引擎
   app.setViewEngine('ejs');
+
+  app.set('query parser', 'extended');
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
   console.log(`NestJS 服务运行在 http://localhost:${port}`);

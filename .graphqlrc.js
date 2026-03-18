@@ -1,4 +1,4 @@
-const fs = require("node:fs");
+const fs = require('node:fs');
 
 function getConfig() {
   const config = {
@@ -7,7 +7,7 @@ function getConfig() {
 
   let extensions = [];
   try {
-    extensions = fs.readdirSync("./extensions");
+    extensions = fs.readdirSync('./extensions');
   } catch {
     // ignore if no extensions
   }

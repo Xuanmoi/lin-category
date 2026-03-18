@@ -9,10 +9,7 @@ export class CollectionsController {
   // 动态路由：/collections/:handle
   @Get(':handle')
   @Render('test')
-  async getCollection(
-    @Param('handle') handle: string,
-    @Res() res: Response,
-  ) {
+  async getCollection(@Param('handle') handle: string, @Res() res: Response) {
     res.header('Content-Type', 'application/liquid');
     return this.collectionsService.getCollectionsData(handle);
   }
